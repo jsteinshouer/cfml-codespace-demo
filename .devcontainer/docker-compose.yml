@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  app:
+    image: ortussolutions/commandbox:latest
+    environment:
+        - PORT=8081
+        - DB_NAME=ToDo
+        - DB_HOST=db
+        - DB_USER=sa
+        - DB_PASSWORD=change_this_password
+
+    volumes:
+      - ..:/app:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # (Adding the "ports" property to this file will not forward from a Codespace.
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "change_this_password"
+      ACCEPT_EULA: "Y"
+    volumes: 
+      - mssql-volume:/var/opt/mssql
+      - ..:/app:cached
+
+volumes:
+  mssql-volume:

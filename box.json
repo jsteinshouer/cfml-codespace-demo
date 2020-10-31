@@ -1,0 +1,42 @@
+{
+    "name":"Demo ToDo Application",
+    "version":"0.0.0",
+    "author":"",
+    "createPackageDirectory":true,
+    "packageDirectory":"",
+    "slug":"todo-app",
+    "shortDescription":"A demo ToDo Application",
+    "private":true,
+    "dependencies":{
+        "cfmigrations":"^2.0.8",
+        "coldbox":"4.3.0+188"
+    },
+    "devDependencies":{
+        "testbox":"*"
+    },
+    "installPaths":{
+        "coldbox":"coldbox/",
+        "testbox":"testbox/",
+        "cfmigrations":"modules/cfmigrations/"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ],
+    "cfmigrations":{
+        "defaultGrammar":"MySQLGrammar",
+        "connectionInfo":{
+            "class":"${DB_CLASS}",
+            "connectionString":"jdbc:sqlserver://${DB_HOST}:1433;DATABASENAME=${DB_NAME};sendStringParametersAsUnicode=true;SelectMethod=direct",
+            "username":"${DB_USER}",
+            "password":"${DB_PASSWORD}"
+        }
+    },
+    "scripts":{
+        "preServerStart":"task run ./resources/scripts/SetupDatabase",
+        "setup":"install commandbox-dotenv && install commandbox-cfconfig && install commandbox-migrations",
+        "build":"task run ./resources/scripts/build",
+        "test":"testbox run"
+    }
+}

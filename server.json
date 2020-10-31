@@ -1,0 +1,18 @@
+{
+    "app":{
+        "cfengine":"lucee@5"
+    },
+    "openbrowser":"false",
+    "web":{
+        "host":"127.0.0.1",
+        "rewrites":{
+            "enable":"true"
+        },
+        "http":{
+            "port":"8081"
+        }
+    },
+    "JVM":{
+        "heapSize":"1024"
+    }
+}

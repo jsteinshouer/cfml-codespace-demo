@@ -1,0 +1,9 @@
+.env
+.svn
+.vscode
+coldbox
+testbox
+build_artifacts
+.data
+modules
+test-results
