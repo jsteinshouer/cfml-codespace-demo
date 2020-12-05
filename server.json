@@ -9,7 +9,7 @@
             "enable":"true"
         },
         "http":{
-            "port":"8081"
+            "port":"8080"
         }
     },
     "JVM":{

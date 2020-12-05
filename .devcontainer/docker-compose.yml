@@ -4,14 +4,15 @@ services:
   app:
     image: ortussolutions/commandbox:latest
     environment:
-        - PORT=8081
+        - PORT=8080
         - DB_NAME=ToDo
         - DB_HOST=db
         - DB_USER=sa
         - DB_PASSWORD=change_this_password
-
     volumes:
       - ..:/app:cached
+    depends_on:
+            - db
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -20,12 +21,13 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.
   db:
     image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
     environment:
       SA_PASSWORD: "change_this_password"
       ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
     volumes: 
       - mssql-volume:/var/opt/mssql
-      - ..:/app:cached
 
 volumes:
   mssql-volume:
