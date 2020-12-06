@@ -28,7 +28,7 @@
 				<cfloop query="prc.qItems">
 				<tr>
 					<td>#prc.qItems.description#</td>
-					<td><a href="#event.buildLink("complete")#?id=#prc.qItems.p_todo_id#" class="btn btn-default btn-small pull-right">Complete</a></td>
+					<td><a href="/complete?id=#prc.qItems.p_todo_id#" class="btn btn-default btn-small pull-right">Complete</a></td>
 				</tr>
 				</cfloop>
 			</tbody>
@@ -36,7 +36,7 @@
 	</div>
 </cfif>
 
-<form class="form-inline" action="#event.buildLink("add")#" method="POST">
+<form class="form-inline" action="/add" method="POST">
 	<div class="col-7">
 	<cfif structKeyExists(prc,"message") and len(prc.message)>
 		<div class="alert alert-danger"><cfoutput>#prc.message#</cfoutput></div>
